@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>merzt | federal.wtf</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Bio page for merzt - Roblox script developer with 8 years of Luau experience">
+    <meta name="keywords" content="federal.wtf, merzt, luau developer, roblox scripts">
+    
+    <!-- Discord/Social Embed -->
+    <meta property="og:title" content="merzt | federal.wtf">
+    <meta property="og:description" content="Roblox script developer with 8 years of Luau experience">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bio.federal.wtf">
+    <meta property="og:image" content="/api/placeholder/1200/630">
+    <meta property="theme-color" content="#000000">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            padding: 1rem;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #000000, #1a1a1a);
+            z-index: -2;
+        }
+
+        .cloud {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, #1a1a1a, transparent);
+            opacity: 0.4;
+            z-index: -1;
+            transform-origin: center center;
+        }
+
+        #cloud1 {
+            width: 600px;
+            height: 600px;
+            top: -100px;
+            left: -100px;
+            animation: moveAround1 30s infinite;
+        }
+
+        #cloud2 {
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            right: -50px;
+            animation: moveAround2 25s infinite;
+        }
+
+        @keyframes moveAround1 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(100px, 50px) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        @keyframes moveAround2 {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-100px, -50px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(15, 15, 15, 0.8);
+            padding: 2.5rem;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+            width: min(500px, 90vw);
+            backdrop-filter: blur(10px);
+        }
+
+        .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            background: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .tag {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .discord-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #1a1a1a;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-size: 1rem;
+            min-width: 200px;
+            max-width: 100%;
+        }
+
+        .discord-button:hover {
+            transform: translateY(-2px);
+            background: #2a2a2a;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="cloud" id="cloud1"></div>
+    <div class="cloud" id="cloud2"></div>
+    <div class="container">
+        <img src="/api/placeholder/110/110" alt="avatar" class="avatar">
+        <h1>merzt</h1>
+        <div class="tag">roblox developer</div>
+        <p class="info">
+            8 years of Luau experience<br>
+            Voice chat & mic up utilities<br>
+            Custom script development
+        </p>
+        <a href="https://discord.gg/AdKd6fURwh" class="discord-button">
+            Discord
+        </a>
+    </div>
+</body>
+</html>
