@@ -1,168 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Federal | federal.wtf</title>
+  <title>federal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@900&display=swap');
+    * { cursor: none; }
     
-    <meta name="description" content="Bio page for Federal - Roblox script developer with 8 years of Luau experience">
-    <meta name="keywords" content="federal.wtf, federal, luau developer, roblox scripts">
-    
-    <meta property="og:title" content="federal | federal.wtf">
-    <meta property="og:description" content="Roblox script developer with 8 years of Luau experience">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://bio.federal.wtf">
-    <meta property="theme-color" content="#000000">
+    :root {
+      --accent: #6366f1;
+      --accent-light: #8b5cf6;
+      --accent-dark: #3b82f6;
+    }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0a0a 0%, #13111C 100%);
+      font-family: 'Space Grotesk', sans-serif;
+      color: white;
+      overflow-x: hidden;
+    }
 
-        body {
-            background-color: #000000;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            padding: 1rem;
-        }
+    .cursor {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      mix-blend-mode: difference;
+    }
 
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #000000, #1a1a1a);
-            z-index: -2;
-        }
+    .cursor-blur {
+      width: 150px;
+      height: 150px;
+      background: rgba(99, 102, 241, 0.15);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      filter: blur(30px);
+      mix-blend-mode: screen;
+    }
 
-        .cloud {
-            position: fixed;
-            border-radius: 50%;
-            background: radial-gradient(circle at center, #1a1a1a, transparent);
-            opacity: 0.4;
-            z-index: -1;
-            transform-origin: center center;
-        }
+    .bg-animate {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, #13111C 0%, #08070B 100%);
+    }
 
-        #cloud1 {
-            width: 600px;
-            height: 600px;
-            top: -100px;
-            left: -100px;
-            animation: moveAround1 30s infinite;
-        }
+    .blob {
+      position: absolute;
+      filter: blur(5px);
+      opacity: 0.05;
+      mix-blend-mode: screen;
+      animation: float var(--duration) ease-in-out infinite;
+      animation-delay: var(--delay);
+      transform-origin: center;
+    }
 
-        #cloud2 {
-            width: 400px;
-            height: 400px;
-            top: 50%;
-            right: -50px;
-            animation: moveAround2 25s infinite;
-        }
+    @keyframes float {
+      0%, 100% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+      33% {
+        transform: translate(var(--translate-x), var(--translate-y)) scale(1.1) rotate(120deg);
+      }
+      66% {
+        transform: translate(calc(var(--translate-x) * -0.5), calc(var(--translate-y) * -0.5)) scale(0.9) rotate(240deg);
+      }
+    }
 
-        @keyframes moveAround1 {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(100px, 50px) scale(1.1); }
-            100% { transform: translate(0, 0) scale(1); }
-        }
+    .site-title {
+      font-family: 'Unbounded', sans-serif;
+      text-transform: lowercase;
+      font-weight: 900;
+      letter-spacing: -3px;
+      background: linear-gradient(45deg, var(--accent), var(--accent-light), var(--accent-dark));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 300% 300%;
+      animation: gradient 8s ease infinite;
+    }
 
-        @keyframes moveAround2 {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-100px, -50px) scale(0.9); }
-            100% { transform: translate(0, 0) scale(1); }
-        }
+    @keyframes gradient {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
 
-        .container {
-            text-align: center;
-            background: rgba(15, 15, 15, 0.8);
-            padding: 2.5rem;
-            border-radius: 4px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-            width: min(500px, 90vw);
-            backdrop-filter: blur(10px);
-        }
+    .content-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: rgba(99, 102, 241, 0.02);
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      box-shadow: 0 0 40px rgba(99, 102, 241, 0.05);
+    }
 
-        .avatar {
-            width: 110px;
-            height: 110px;
-            border-radius: 4px;
-            margin-bottom: 1.5rem;
-            background: #1a1a1a;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
+    .section {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(99, 102, 241, 0.03);
+      border-radius: 16px;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(99, 102, 241, 0.08);
+      transition: all 0.3s ease;
+    }
 
-        h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
+    .section:hover {
+      border-color: rgba(99, 102, 241, 0.2);
+      transform: translateY(-2px);
+    }
 
-        .tag {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
+    .skill-tag {
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
 
-        .info {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .discord-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: #1a1a1a;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            font-size: 1rem;
-            min-width: 200px;
-            max-width: 100%;
-        }
-
-        .discord-button:hover {
-            transform: translateY(-2px);
-            background: #2a2a2a;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-        }
-    </style>
+    .skill-tag:hover {
+      transform: translateY(-2px);
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+    }
+  </style>
 </head>
 <body>
-    <div class="background"></div>
-    <div class="cloud" id="cloud1"></div>
-    <div class="cloud" id="cloud2"></div>
-    <div class="container">
-        <h1>Federal</h1>
-        <div class="tag">programmer / exploiter</div>
-        <p class="info">
-            Hi, I'm Federal.<br>
-            C#, C++, Lua/Luau<br>
-            Exploiting every vulnerability you leave for me.
-        </p>
-        <a href="https://discord.gg/AdKd6fURwh" class="discord-button">
-            Discord
-        </a>
+  <div class="cursor"></div>
+  <div class="cursor-blur"></div>
+  <div class="bg-animate"></div>
+
+  <script>
+    function createBlob(existingBlobs) {
+      const blob = document.createElement('div');
+      blob.className = 'blob';
+      
+      const size = Math.random() * 400 + 300;
+      let position = {
+        left: Math.random() * window.innerWidth,
+        top: Math.random() * window.innerHeight
+      };
+      
+      const translateX = Math.random() * 60 - 30;
+      const translateY = Math.random() * 60 - 30;
+      const duration = Math.random() * 10 + 15;
+      const delay = Math.random() * -20;
+      
+      const radius1 = Math.random() * 20 + 40;
+      const radius2 = Math.random() * 20 + 40;
+      const radius3 = Math.random() * 20 + 40;
+      const radius4 = Math.random() * 20 + 40;
+      
+      blob.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        background: ${Math.random() > 0.5 ? 'var(--accent)' : 'var(--accent-light)'};
+        left: ${position.left}px;
+        top: ${position.top}px;
+        --translate-x: ${translateX}px;
+        --translate-y: ${translateY}px;
+        --duration: ${duration}s;
+        --delay: ${delay}s;
+        border-radius: ${radius1}% ${radius2}% ${radius3}% ${radius4}% / ${radius4}% ${radius3}% ${radius2}% ${radius1}%;
+      `;
+      
+      return blob;
+    }
+
+    const background = document.querySelector('.bg-animate');
+    const blobs = [];
+    for (let i = 0; i < 5; i++) {
+      const blob = createBlob(blobs);
+      blobs.push(blob);
+      background.appendChild(blob);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      requestAnimationFrame(() => {
+        const cursor = document.querySelector('.cursor');
+        const cursorBlur = document.querySelector('.cursor-blur');
+        cursor.style.transform = `translate(${e.clientX - 12}px, ${e.clientY - 12}px)`;
+        cursorBlur.style.transform = `translate(${e.clientX - 75}px, ${e.clientY - 75}px)`;
+      });
+    });
+  </script>
+
+  <div class="relative z-10 min-h-screen py-20 px-4">
+    <div class="flex flex-col items-center mb-12">
+      <h1 class="site-title text-6xl md:text-7xl mb-4">federal</h1>
+      <p class="opacity-70 text-lg">security researcher & developer</p>
     </div>
+
+    <div class="content-container">
+      <div class="section">
+        <h2 class="text-2xl font-bold mb-4">about me</h2>
+        <p class="text-lg opacity-80 leading-relaxed">
+          i'm a 16-year-old developer with 8 years of coding experience. i specialize in vulnerability research
+          and exploit development, with a particular focus on reverse engineering and security analysis.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2 class="text-2xl font-bold mb-4">skills</h2>
+        <div class="flex flex-wrap gap-3 justify-center">
+          <div class="skill-tag">c++</div>
+          <div class="skill-tag">c#</div>
+          <div class="skill-tag">lua/luau</div>
+          <div class="skill-tag">java</div>
+          <div class="skill-tag">exploit development</div>
+          <div class="skill-tag">reverse engineering</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
