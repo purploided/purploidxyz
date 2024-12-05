@@ -8,9 +8,9 @@
     * { cursor: none; }
     
     :root {
-      --accent: #6366f1;
-      --accent-light: #8b5cf6;
-      --accent-dark: #3b82f6;
+      --accent: #bb63f1;
+      --accent-light: #ac5cf6;
+      --accent-dark: #993bf6;
     }
 
     body {
@@ -85,6 +85,9 @@
       background-size: 300% 300%;
       animation: gradient 8s ease infinite;
     }
+    .site-title::selection {
+      background: rgba(166, 0, 255, 0.283);
+    }
 
     @keyframes gradient {
       0%, 100% { background-position: 0% 50%; }
@@ -95,11 +98,16 @@
       max-width: 800px;
       margin: 0 auto;
       padding: 2rem;
+      padding-bottom: 1rem;
       background: rgba(99, 102, 241, 0.02);
       border-radius: 24px;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(99, 102, 241, 0.1);
       box-shadow: 0 0 40px rgba(99, 102, 241, 0.05);
+    }
+
+    .content-container::selection {
+      background: rgba(166, 0, 255, 0.283);
     }
 
     .section {
@@ -110,6 +118,10 @@
       margin-bottom: 1.5rem;
       border: 1px solid rgba(99, 102, 241, 0.08);
       transition: all 0.3s ease;
+    }
+    
+    .section::selection {
+      background: rgba(166, 0, 255, 0.283);
     }
 
     .section:hover {
@@ -127,10 +139,21 @@
       transition: all 0.3s ease;
     }
 
+    .skill-tag::selection {
+      background: rgba(166, 0, 255, 0.283);
+    }
+
     .skill-tag:hover {
       transform: translateY(-2px);
       border-color: rgba(99, 102, 241, 0.4);
       box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+    }
+
+    .text-lg::selection {
+      background: rgba(166, 0, 255, 0.283);
+    }
+    .text-2xl::selection {
+      background: rgba(166, 0, 255, 0.283);
     }
   </style>
 </head>
@@ -196,28 +219,27 @@
 
   <div class="relative z-10 min-h-screen py-20 px-4">
     <div class="flex flex-col items-center mb-12">
-      <h1 class="site-title text-6xl md:text-7xl mb-4">federal</h1>
-      <p class="opacity-70 text-lg">security researcher & developer</p>
+      <h1 class="site-title text-6xl md:text-7xl mb-4">purploid</h1>
+      <p class="opacity-70 text-lg">software developer & cyber security</p>
     </div>
 
     <div class="content-container">
       <div class="section">
         <h2 class="text-2xl font-bold mb-4">about me</h2>
         <p class="text-lg opacity-80 leading-relaxed">
-          i'm a 16-year-old developer with 8 years of coding experience. i specialize in vulnerability research
-          and exploit development, with a particular focus on reverse engineering and security analysis.
+          i'm a 16-year-old programmer with 7 years of coding experience, 3 of which was doing website development. i do youtube sometimes. i'm a car enthusiast (vw my beloved)..
         </p>
       </div>
 
       <div class="section">
         <h2 class="text-2xl font-bold mb-4">skills</h2>
         <div class="flex flex-wrap gap-3 justify-center">
-          <div class="skill-tag">c++</div>
-          <div class="skill-tag">c#</div>
-          <div class="skill-tag">lua/luau</div>
-          <div class="skill-tag">java</div>
-          <div class="skill-tag">exploit development</div>
-          <div class="skill-tag">reverse engineering</div>
+          <div class="skill-tag">javascript</div>
+          <div class="skill-tag">typescript</div>
+          <div class="skill-tag">python</div>
+          <div class="skill-tag">git</div>
+          <div class="skill-tag">azure</div>
+          <div class="skill-tag">google cloud</div>
         </div>
       </div>
     </div>
